@@ -9,6 +9,8 @@ import study.datajpa.domain.Member;
 import study.datajpa.domain.Team;
 import study.datajpa.dto.MemberDto;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,6 +22,8 @@ class MemberJpaRepositoryTest {
     @Autowired MemberJpaRepository memberJpaRepository;
     @Autowired MemberRepository memberRepository;
     @Autowired TeamJpaRepository teamJpaRepository;
+    @PersistenceContext
+    EntityManager em;
     @Test
     void save() {
         Member member = new Member("memberA",11);
@@ -59,6 +63,9 @@ class MemberJpaRepositoryTest {
         memberRepository.save(new Member("member5",19));
 
         int resultCount = memberJpaRepository.bulkAgePlus(15);
+        em.flush();
+        em.clear();
+
         System.out.println("resultCount = " + resultCount);
 
     }
