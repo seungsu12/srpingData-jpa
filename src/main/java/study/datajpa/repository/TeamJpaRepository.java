@@ -16,7 +16,7 @@ public class TeamJpaRepository {
     private EntityManager em;
 
 
-    private Team save(Team team) {
+    public Team save(Team team) {
         em.persist(team);
         return team;
     }

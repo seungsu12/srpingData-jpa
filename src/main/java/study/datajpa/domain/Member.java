@@ -31,8 +31,9 @@ public class Member {
         team.getMembers().add(this);
     }
 
-    public Member(String username) {
+    public Member(String username,int age) {
         this.username = username;
+        this.age = age;
     }
 
 
